@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate a<br><span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" id="password" placeholder="Password">
+            <img src="images/copy.png" onclick="copyPassword()">
+        </div>
+        <button onclick="generatePassword()"><img src="images/generate.png">Generate
+            Password</button>
+    </div>
+
+    <script>
+        const passwordBox = document.getElementById("password");
+        const length = 16;
+
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        const number = "0123456789";
+        const symbol = "~`!@#$%^&*()_-+=[{}]|:;'<,>.?";
+
+        const mixed = upperCase + lowerCase + number + symbol;
+
+        function generatePassword() {
+            let password = "";
+
+            while (length > password.length) {
+                password = password + mixed[Math.floor(Math.random() * mixed.length)];
+
+            }
+            passwordBox.value = password;
+        };
+
+        function copyPassword() {
+            passwordBox.select();
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+
+</html>
